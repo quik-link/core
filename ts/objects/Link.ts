@@ -7,6 +7,7 @@
 
 import {SiObject} from "@element-ts/silicon";
 import {Visit} from "./Visit";
+import {HObject} from "@element-ts/hydrogen";
 
 export interface LinkProps {
 	url: string;
@@ -14,7 +15,7 @@ export interface LinkProps {
 	name: string;
 }
 
-export class Link extends SiObject<LinkProps> {
+export class Link extends SiObject<LinkProps> implements HObject {
 
 	public constructor() {
 
@@ -29,6 +30,17 @@ export class Link extends SiObject<LinkProps> {
 
 		await visit.create();
 
+	}
+
+	public bond(): object {
+		return {
+			url: this.props.url,
+			userId: this.props.userId,
+			name: this.props.name,
+			id: this.getId(),
+			updatedAt: this.getUpdatedAt(),
+			createdAt: this.getCreatedAt()
+		};
 	}
 
 }

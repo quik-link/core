@@ -6,17 +6,27 @@
  */
 
 import {SiObject} from "@element-ts/silicon";
+import {HObject} from "@element-ts/hydrogen";
 
 export interface VisitProps {
 	linkId: string;
 }
 
-export class Visit extends SiObject<VisitProps> {
+export class Visit extends SiObject<VisitProps> implements HObject {
 
 	public constructor() {
 
 		super("visit");
 
+	}
+
+	public bond(): object {
+		return {
+			linkId: this.props.linkId,
+			id: this.getId(),
+			updatedAt: this.getUpdatedAt(),
+			createdAt: this.getCreatedAt()
+		};
 	}
 
 }

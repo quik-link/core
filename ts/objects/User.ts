@@ -8,6 +8,7 @@
 import {SiObject, SiQuery} from "@element-ts/silicon";
 import {KrBcrypt} from "@element-ts/krypton";
 import {Token} from "./Token";
+import {HObject} from "@element-ts/hydrogen";
 
 export interface UserProps {
 	firstName: string;
@@ -24,12 +25,23 @@ export interface UserSignUpProps {
 	password: string;
 }
 
-export class User extends SiObject<UserProps> {
+export class User extends SiObject<UserProps> implements HObject {
 
 	public constructor() {
 
 		super("user");
 
+	}
+
+	public bond(): object {
+		return {
+			firstName: this.props.firstName,
+			lastName: this.props.lastName,
+			email: this.props.email,
+			id: this.getId(),
+			updatedAt: this.getUpdatedAt(),
+			createdAt: this.getCreatedAt()
+		};
 	}
 
 	public generateToken(): Promise<Token> {

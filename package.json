@@ -1,6 +1,6 @@
 {
   "name": "@quik-link/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A package to template lorem ipsum.",
   "keywords": [],
   "main": "js/index",
@@ -33,7 +33,9 @@
   "dependencies": {
     "@element-ts/silicon": "latest",
     "@element-ts/krypton": "latest",
-    "@types/mongodb": "latest"
+    "@types/mongodb": "latest",
+    "@element-ts/neon": "latest",
+    "@element-ts/hydrogen": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
