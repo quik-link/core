@@ -62,15 +62,23 @@ export class User extends SiObject<UserProps> implements HObject {
 
 	}
 
+	public async verifyPassword(password: string): Promise<boolean> {
+
+		if (this.props.salt === undefined || this.props.pepper === undefined) {
+			throw new Error("Password is not set.");
+		}
+
+		return KrBcrypt.verifyPassword(password, this.props.pepper, this.props.salt);
+
+	}
+
 	public static async signIn(email: string, password: string): Promise<User> {
 
 		const query = new SiQuery<User, UserProps>(User, {email});
 		const user = await query.getFirst();
 		const incorrectCredentialMessage = "Incorrect email or password.";
 		if (user === undefined) throw new Error(incorrectCredentialMessage);
-		if (!user.props.salt || !user.props.pepper) throw new Error("User does not have password set.");
-		const isPasswordCorrect = await KrBcrypt.verifyPassword(password, user.props.pepper, user.props.salt);
-		if (!isPasswordCorrect) throw new Error(incorrectCredentialMessage);
+		if (!await user.verifyPassword(password)) throw new Error(incorrectCredentialMessage);
 
 		return user;
 
