@@ -11,6 +11,7 @@ import {Visit} from "./Visit";
 export interface LinkProps {
 	url: string;
 	userId: string;
+	name: string;
 }
 
 export class Link extends SiObject<LinkProps> {
