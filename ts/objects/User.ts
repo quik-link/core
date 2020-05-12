@@ -34,14 +34,7 @@ export class User extends SiObject<UserProps> implements HObject {
 	}
 
 	public bond(): object {
-		return {
-			firstName: this.props.firstName,
-			lastName: this.props.lastName,
-			email: this.props.email,
-			id: this.getId(),
-			updatedAt: this.getUpdatedAt(),
-			createdAt: this.getCreatedAt()
-		};
+		return this.getJSON("firstName", "lastName", "email");
 	}
 
 	public generateToken(): Promise<Token> {
@@ -64,11 +57,11 @@ export class User extends SiObject<UserProps> implements HObject {
 
 	public async verifyPassword(password: string): Promise<boolean> {
 
-		if (this.props.salt === undefined || this.props.pepper === undefined) {
-			throw new Error("Password is not set.");
-		}
-
-		return KrBcrypt.verifyPassword(password, this.props.pepper, this.props.salt);
+		return KrBcrypt.verifyPassword(
+			password,
+			this.getUnsafe("pepper"),
+			this.getUnsafe("pepper")
+		);
 
 	}
 

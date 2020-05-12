@@ -33,14 +33,7 @@ export class Link extends SiObject<LinkProps> implements HObject {
 	}
 
 	public bond(): object {
-		return {
-			url: this.props.url,
-			userId: this.props.userId,
-			name: this.props.name,
-			id: this.getId(),
-			updatedAt: this.getUpdatedAt(),
-			createdAt: this.getCreatedAt()
-		};
+		return this.getJSON();
 	}
 
 }

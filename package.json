@@ -1,6 +1,6 @@
 {
   "name": "@quik-link/core",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A package to template lorem ipsum.",
   "keywords": [],
   "main": "js/index",
@@ -31,11 +31,11 @@
   },
   "homepage": "https://github.com/quik-link/core#readme",
   "dependencies": {
-    "@element-ts/hydrogen": "latest",
-    "@element-ts/krypton": "latest",
-    "@element-ts/neon": "latest",
-    "@element-ts/silicon": "latest",
-    "@types/mongodb": "latest"
+    "@element-ts/hydrogen": "^1.0.5",
+    "@element-ts/krypton": "^0.3.3",
+    "@element-ts/neon": "^1.0.1",
+    "@element-ts/silicon": "^1.0.1",
+    "@types/mongodb": "3.5.16"
   },
   "devDependencies": {
     "@types/node": "latest",

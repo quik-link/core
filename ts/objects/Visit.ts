@@ -21,12 +21,7 @@ export class Visit extends SiObject<VisitProps> implements HObject {
 	}
 
 	public bond(): object {
-		return {
-			linkId: this.props.linkId,
-			id: this.getId(),
-			updatedAt: this.getUpdatedAt(),
-			createdAt: this.getCreatedAt()
-		};
+		return this.getJSON();
 	}
 
 }
